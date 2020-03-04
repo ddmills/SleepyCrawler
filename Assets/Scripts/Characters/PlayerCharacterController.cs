@@ -26,6 +26,11 @@ namespace Sleepy.Characters
                 Input.GetAxisRaw("Vertical")
             );
 
+            if (Input.GetButtonDown("Jump"))
+            {
+                Character.Body.Dash();
+            }
+
             Character.Body.SetVelocity(inputAxis.normalized * 2);
         }
     }

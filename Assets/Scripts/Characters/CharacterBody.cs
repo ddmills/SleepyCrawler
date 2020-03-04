@@ -13,11 +13,19 @@ namespace Sleepy.Characters
         private Character _character;
         public Character Character { get { return _character; }}
 
+        private Vector2 _previousPosition;
         private Vector2 _velocity;
         public Vector2 Velocity { get { return _velocity; }}
+        public float Speed { get { return Velocity.magnitude; }}
+        public Vector2 Direction { get { return (Position - _previousPosition).normalized; }}
         private bool _isDashing;
-        public Vector2 IsDashing { get { return _isDashing; }}
+        public bool IsDashing { get { return _isDashing; }}
         public Vector2 Position { get { return transform.position; }}
+
+        void Awake()
+        {
+            _previousPosition = Position;
+        }
 
         public void AssignCharacter(Character character)
         {
@@ -41,9 +49,29 @@ namespace Sleepy.Characters
                 return;
             }
 
-            Vector2 position = Position + Velocity * Time.fixedDeltaTime;
+            Vector2 position = Position;
+            position += Velocity * Time.fixedDeltaTime;
+
+            if (IsDashing)
+            {
+                RaycastHit2D hit = Physics2D.Raycast(Position, Direction, 1);
+                if (hit.collider != null)
+                {
+                    position = hit.point;
+                }
+                else
+                {
+                    position += Direction * 1;
+                }
+                _isDashing = false;
+            }
+
             Vector2 offset = ComputePhysicsOffest(position);
 
+            if (offset != Position)
+            {
+                _previousPosition = Position;
+            }
             transform.position = offset;
         }
 
