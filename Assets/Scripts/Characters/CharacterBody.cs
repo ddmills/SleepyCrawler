@@ -13,19 +13,14 @@ namespace Sleepy.Characters
         private Character _character;
         public Character Character { get { return _character; }}
 
-        private Vector2 _previousPosition;
         private Vector2 _velocity;
         public Vector2 Velocity { get { return _velocity; }}
-        public float Speed { get { return Velocity.magnitude; }}
-        public Vector2 Direction { get { return (Position - _previousPosition).normalized; }}
+        private Vector2 _direction;
+        public Vector2 Direction { get { return _direction; }}
         private bool _isDashing;
         public bool IsDashing { get { return _isDashing; }}
         public Vector2 Position { get { return transform.position; }}
-
-        void Awake()
-        {
-            _previousPosition = Position;
-        }
+        public float Speed { get { return Velocity.magnitude; }}
 
         public void AssignCharacter(Character character)
         {
@@ -35,6 +30,16 @@ namespace Sleepy.Characters
         public void SetVelocity(Vector2 velocity)
         {
             _velocity = velocity;
+        }
+
+        public void SetDirection(Vector2 direction)
+        {
+            _direction = direction;
+        }
+
+        public void LookAt(Vector2 point)
+        {
+            SetDirection((point - Position).normalized);
         }
 
         public void Dash()
@@ -66,13 +71,7 @@ namespace Sleepy.Characters
                 _isDashing = false;
             }
 
-            Vector2 offset = ComputePhysicsOffest(position);
-
-            if (offset != Position)
-            {
-                _previousPosition = Position;
-            }
-            transform.position = offset;
+            transform.position = ComputePhysicsOffest(position);
         }
 
         private Vector2 ComputePhysicsOffest(Vector2 targetPosition)

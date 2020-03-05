@@ -17,6 +17,9 @@ namespace Sleepy.Characters
             {
                 Character.TakeControl();
             }
+
+            state.AddCallback("Direction", OnDirectionChange);
+            state.AddCallback("Velocity", OnVelocityChange);
         }
 
         public override void SimulateOwner()
@@ -25,6 +28,7 @@ namespace Sleepy.Characters
                 Input.GetAxisRaw("Horizontal"),
                 Input.GetAxisRaw("Vertical")
             );
+            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
             if (Input.GetButtonDown("Jump"))
             {
@@ -32,6 +36,20 @@ namespace Sleepy.Characters
             }
 
             Character.Body.SetVelocity(inputAxis.normalized * 2);
+            Character.Body.LookAt(mousePosition);
+
+            state.Direction = Character.Body.Direction;
+            state.Velocity = Character.Body.Velocity;
+        }
+
+        public void OnDirectionChange()
+        {
+            Character.Body.SetDirection(state.Direction);
+        }
+
+        public void OnVelocityChange()
+        {
+            Character.Body.SetVelocity(state.Velocity);
         }
     }
 }
