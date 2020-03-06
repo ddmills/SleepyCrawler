@@ -8,6 +8,7 @@ namespace Sleepy
         private Transform _target;
         [SerializeField]
         private Transform _camera;
+        private Vector3 offset = new Vector3(0, 0, -10);
 
         void Awake ()
         {
@@ -17,8 +18,12 @@ namespace Sleepy
         public void SetTarget(Transform target)
         {
             _target = target;
-            _camera.parent = _target;
-            _camera.localPosition = new Vector3(0, 0, -10);
+            _camera.position = _target.position + offset;
+        }
+
+        public void Update()
+        {
+            _camera.position = Vector3.Lerp(_camera.position, _target.position + offset, Time.deltaTime);
         }
     }
 }
