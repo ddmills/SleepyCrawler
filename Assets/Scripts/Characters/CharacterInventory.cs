@@ -12,6 +12,7 @@ namespace Sleepy.Characters
         private HandItemSlot rightHandItemSlot;
         [SerializeField]
         private ItemData rightHandItemData;
+        public ItemData Weapon { get { return rightHandItemData; }}
 
         public void Awake()
         {

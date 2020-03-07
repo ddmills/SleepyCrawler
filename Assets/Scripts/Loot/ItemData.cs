@@ -8,6 +8,10 @@ namespace Sleepy.Loot
     {
         public string SpritePath;
         public string Description;
+        public string StrikeType;
+        public Vector2 ColliderSize;
+        public float ColliderOffset;
+        public float AttackCooldownDuration;
 
         public Sprite LoadSprite()
         {

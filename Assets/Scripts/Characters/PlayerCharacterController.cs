@@ -3,7 +3,7 @@ namespace Sleepy.Characters
     using Bolt;
     using UnityEngine;
 
-    public class PlayerCharacterController : EntityBehaviour<ICharacterState>
+    public class PlayerCharacterController : EntityEventListener<ICharacterState>
     {
         [SerializeField]
         private Character _character;
@@ -12,6 +12,7 @@ namespace Sleepy.Characters
         public override void Attached()
         {
             state.SetTransforms(state.Transform, transform);
+            Character.SetEntity(entity);
 
             if (entity.IsOwner)
             {
@@ -35,6 +36,11 @@ namespace Sleepy.Characters
                 Character.Body.Dash();
             }
 
+            if (Input.GetMouseButtonDown(0))
+            {
+                bool attacked = Character.Combat.BasicAttack();
+            }
+
             Character.Body.SetVelocity(inputAxis.normalized * 2);
             Character.Body.LookAt(mousePosition);
 
@@ -50,6 +56,11 @@ namespace Sleepy.Characters
         public void OnVelocityChange()
         {
             Character.Body.SetVelocity(state.Velocity);
+        }
+
+        public override void OnEvent(StrikeEvent evnt)
+        {
+            BoltConsole.Write("Character received strike " + evnt.Amount + " of " + evnt.Type + " by " + evnt.Source.name);
         }
     }
 }

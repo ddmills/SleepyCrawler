@@ -16,6 +16,9 @@ GameObject:
   - component: {fileID: 9180657545047147418}
   - component: {fileID: 7376909970749841370}
   - component: {fileID: -4601656995506834654}
+  - component: {fileID: 8815902390130252480}
+  - component: {fileID: -937138145242510141}
+  - component: {fileID: -889647560896374652}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Untagged
@@ -52,7 +55,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sceneGuid: 
   _serializerGuid: 81bfa6b2-0d17-4349-97a2-078d96d31818
-  _prefabId: 1
+  _prefabId: 2
   _updateRate: 1
   _autoFreezeProxyFrames: 0
   _clientPredicted: 1
@@ -170,6 +173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _body: {fileID: 1662408653598306169}
   _inventory: {fileID: -4601656995506834654}
+  _combat: {fileID: 8815902390130252480}
 --- !u!114 &7376909970749841370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,6 +203,60 @@ MonoBehaviour:
   rightHandItemData:
     SpritePath: Sprites/Sword
     Description: ooo shiny
+    StrikeType: Slashing
+    ColliderSize: {x: 0.5, y: 1}
+    ColliderOffset: 0.5
+    AttackCooldownDuration: 0.2
+--- !u!114 &8815902390130252480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5937608682012630579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 429ec539634fb3f46afa0623f27d966b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-937138145242510141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5937608682012630579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2dede158fa6bb643accfef1d0a48244, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-889647560896374652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5937608682012630579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8338885e86b19045874763d2ec8699a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnStrikeEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -937138145242510141}
+        m_MethodName: TriggerBoltStrikeEvent
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8908984561584767842
 GameObject:
   m_ObjectHideFlags: 0
@@ -297,3 +355,7 @@ MonoBehaviour:
   _itemData:
     SpritePath: 
     Description: 
+    StrikeType: 
+    ColliderSize: {x: 0, y: 0}
+    ColliderOffset: 0
+    AttackCooldownDuration: 0

@@ -17,6 +17,7 @@ namespace Sleepy.Characters
         public Vector2 Velocity { get { return _velocity; }}
         private Vector2 _direction;
         public Vector2 Direction { get { return _direction; }}
+        public float Angle { get { return (Mathf.Atan2(Direction.y, Direction.x) * Mathf.Rad2Deg) + 90; }}
         private bool _isDashing;
         public bool IsDashing { get { return _isDashing; }}
         public Vector2 Position { get { return transform.position; }}
@@ -100,6 +101,17 @@ namespace Sleepy.Characters
         private Collider2D[] GetCollisions(Vector2 position)
         {
             return Physics2D.OverlapBoxAll(position, Collider.size, 0);
+        }
+
+        public Collider2D[] CastBoxInFront(Vector2 size, float offset)
+        {
+            return Physics2D.OverlapBoxAll(
+                Position + (
+                    Direction * ((size.y / 2) + offset)
+                ),
+                size,
+                Angle
+            );
         }
     }
 }

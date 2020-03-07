@@ -37,9 +37,7 @@ namespace Sleepy.Loot
                 spriteRenderer.sortingLayerName = "front";
             }
 
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-            transform.localEulerAngles = new Vector3(0, 0, angle);
+            transform.localEulerAngles = new Vector3(0, 0, Character.Body.Angle);
         }
     }
 }
