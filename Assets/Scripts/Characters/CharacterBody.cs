@@ -11,6 +11,9 @@ namespace Sleepy.Characters
         private BoxCollider2D _collider;
         public BoxCollider2D Collider { get { return _collider; }}
 
+        private float _speedControlThreshold = 3;
+        private float _velocityLerpFactor = 5;
+
         private Character _character;
         public Character Character { get { return _character; }}
 
@@ -20,16 +23,13 @@ namespace Sleepy.Characters
         public Vector2 DesiredVelocity { get { return _desiredVelocity; }}
         private Vector2 _direction;
         public Vector2 Direction { get { return _direction; }}
-        public Vector2 MovementDirection { get { return Speed > 0 ? Velocity.normalized : Direction; }}
-        public float Angle { get { return (Mathf.Atan2(Direction.y, Direction.x) * Mathf.Rad2Deg) + 90; }}
-        private bool _isDashing;
-        public bool IsDashing { get { return _isDashing; }}
-        public Vector2 Position { get { return transform.position; }}
-        public float Speed { get { return Velocity.magnitude; }}
         private List<Vector2> _impulses = new List<Vector2>();
         public IEnumerable<Vector2> Impulses { get { return _impulses; }}
-        private float _speedControlThreshold = 3;
-        private float _velocityLerpFactor = 5;
+
+        public Vector2 MovementDirection { get { return Speed > 0 ? Velocity.normalized : Direction; }}
+        public float Angle { get { return (Mathf.Atan2(Direction.y, Direction.x) * Mathf.Rad2Deg) + 90; }}
+        public Vector2 Position { get { return transform.position; }}
+        public float Speed { get { return Velocity.magnitude; }}
 
         public void AssignCharacter(Character character)
         {
