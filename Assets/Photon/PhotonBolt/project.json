@@ -90,7 +90,6 @@
         {
           "Name": "Direction",
           "Enabled": true,
-          "Expanded": true,
           "Priority": 1,
           "PropertyType": {
             "$type": "Bolt.Compiler.PropertyTypeVector, bolt.compiler",
@@ -139,7 +138,6 @@
         {
           "Name": "Velocity",
           "Enabled": true,
-          "Expanded": true,
           "Priority": 1,
           "PropertyType": {
             "$type": "Bolt.Compiler.PropertyTypeVector, bolt.compiler",

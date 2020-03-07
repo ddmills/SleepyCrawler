@@ -1,6 +1,7 @@
 namespace Sleepy.Characters
 {
     using System;
+    using System.Collections.Generic;
     using UnityEngine;
 
     [Serializable]
@@ -15,13 +16,20 @@ namespace Sleepy.Characters
 
         private Vector2 _velocity;
         public Vector2 Velocity { get { return _velocity; }}
+        private Vector2 _desiredVelocity;
+        public Vector2 DesiredVelocity { get { return _desiredVelocity; }}
         private Vector2 _direction;
         public Vector2 Direction { get { return _direction; }}
+        public Vector2 MovementDirection { get { return Speed > 0 ? Velocity.normalized : Direction; }}
         public float Angle { get { return (Mathf.Atan2(Direction.y, Direction.x) * Mathf.Rad2Deg) + 90; }}
         private bool _isDashing;
         public bool IsDashing { get { return _isDashing; }}
         public Vector2 Position { get { return transform.position; }}
         public float Speed { get { return Velocity.magnitude; }}
+        private List<Vector2> _impulses = new List<Vector2>();
+        public IEnumerable<Vector2> Impulses { get { return _impulses; }}
+        private float _speedControlThreshold = 3;
+        private float _velocityLerpFactor = 5;
 
         public void AssignCharacter(Character character)
         {
@@ -31,6 +39,11 @@ namespace Sleepy.Characters
         public void SetVelocity(Vector2 velocity)
         {
             _velocity = velocity;
+        }
+
+        public void SetDesiredVelocity(Vector2 velocity)
+        {
+            _desiredVelocity = velocity;
         }
 
         public void SetDirection(Vector2 direction)
@@ -43,9 +56,19 @@ namespace Sleepy.Characters
             SetDirection((point - Position).normalized);
         }
 
+        public void AddImpulse(Vector2 impulse)
+        {
+            _impulses.Add(impulse);
+        }
+
         public void Dash()
         {
-            _isDashing = true;
+            AddImpulse(MovementDirection * 10);
+        }
+
+        public void Knockback(Vector2 source, float amount)
+        {
+            AddImpulse((Position - source) * amount);
         }
 
         public void FixedUpdate()
@@ -55,24 +78,30 @@ namespace Sleepy.Characters
                 return;
             }
 
+            _velocity = CalculateVelocity();
+
             Vector2 position = Position;
             position += Velocity * Time.fixedDeltaTime;
 
-            if (IsDashing)
+            transform.position = ComputePhysicsOffest(position);
+        }
+
+        private Vector2 CalculateVelocity()
+        {
+            Vector2 result = Velocity;
+            foreach (Vector2 impulse in Impulses)
             {
-                RaycastHit2D hit = Physics2D.Raycast(Position, Direction, 1);
-                if (hit.collider != null)
-                {
-                    position = hit.point;
-                }
-                else
-                {
-                    position += Direction * 1;
-                }
-                _isDashing = false;
+                result += impulse;
+            }
+            result = Vector2.Lerp(result, _desiredVelocity, Time.fixedDeltaTime * _velocityLerpFactor);
+            _impulses.Clear();
+
+            if (result.magnitude < _speedControlThreshold && _desiredVelocity.magnitude < _speedControlThreshold)
+            {
+                return _desiredVelocity;
             }
 
-            transform.position = ComputePhysicsOffest(position);
+            return result;
         }
 
         private Vector2 ComputePhysicsOffest(Vector2 targetPosition)
@@ -91,6 +120,7 @@ namespace Sleepy.Characters
 
                 if (distance.isOverlapped)
                 {
+                    SetVelocity(Vector2.zero);
                     result = result + distance.pointA - distance.pointB;
                 }
             }

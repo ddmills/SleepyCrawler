@@ -41,7 +41,7 @@ namespace Sleepy.Characters
                 bool attacked = Character.Combat.BasicAttack();
             }
 
-            Character.Body.SetVelocity(inputAxis.normalized * 2);
+            Character.Body.SetDesiredVelocity(inputAxis.normalized * 2);
             Character.Body.LookAt(mousePosition);
 
             state.Direction = Character.Body.Direction;
@@ -61,6 +61,7 @@ namespace Sleepy.Characters
         public override void OnEvent(StrikeEvent evnt)
         {
             BoltConsole.Write("Character received strike " + evnt.Amount + " of " + evnt.Type + " by " + evnt.Source.name);
+            Character.Body.Knockback(evnt.Source.transform.position, 5);
         }
     }
 }
