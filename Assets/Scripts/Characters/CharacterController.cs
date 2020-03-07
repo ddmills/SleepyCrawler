@@ -98,7 +98,7 @@ namespace Sleepy.Characters
         private void ModeFollow()
         {
             Character.Body.SetDesiredVelocity(
-                GetNormalizedDirectionTo(TargetTransform.position) * -_walkSpeed
+                GetNormalizedDirectionTo(TargetTransform.position) * _walkSpeed
             );
         }
 

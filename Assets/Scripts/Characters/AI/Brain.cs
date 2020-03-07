@@ -14,18 +14,18 @@ namespace Sleepy.Characters.AI
         {
             currentBehavior = new IdleBehavior();
 
-            // List<Character> hostiles = character.Sensors.GetDetectedHostiles();
+            List<Character> hostiles = character.Sensors.GetDetectedHostiles();
 
-            // if (hostiles.Count > 1)
-            // {
-            //     currentBehavior = new FleeBehavior(hostiles[0]);
-            //     return currentBehavior;
-            // }
-            // else if (hostiles.Count == 1)
-            // {
-            //     currentBehavior = new FollowBehavior(hostiles[0]);
-            //     return currentBehavior;
-            // }
+            if (hostiles.Count > 1)
+            {
+                currentBehavior = new FleeBehavior(hostiles[0]);
+                return currentBehavior;
+            }
+            else if (hostiles.Count == 1)
+            {
+                currentBehavior = new FollowBehavior(hostiles[0]);
+                return currentBehavior;
+            }
 
             return currentBehavior;
         }

@@ -114,13 +114,14 @@ GameObject:
   - component: {fileID: 4416498731285344552}
   - component: {fileID: 3177008635836805779}
   - component: {fileID: 4442452589314604650}
-  - component: {fileID: 7594072802048000984}
   - component: {fileID: 79270681313701691}
+  - component: {fileID: 7594072802048000984}
   - component: {fileID: 4490720435597107075}
   - component: {fileID: 300051935472318049}
+  - component: {fileID: 6661446160781109839}
+  - component: {fileID: 8008858518621882282}
   - component: {fileID: 904945300653727842}
   - component: {fileID: 997205813418226725}
-  - component: {fileID: 8008858518621882282}
   - component: {fileID: 7334761012151370915}
   - component: {fileID: 7841540547406335849}
   m_Layer: 0
@@ -250,19 +251,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &7594072802048000984
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3177008635836805778}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc8b5f48400a4904a9bc8b7a31373bed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _collider: {fileID: 4442452589314604650}
 --- !u!114 &79270681313701691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,6 +267,20 @@ MonoBehaviour:
   _inventory: {fileID: 4490720435597107075}
   _controller: {fileID: 8008858518621882282}
   _combat: {fileID: 300051935472318049}
+  _sensors: {fileID: 6661446160781109839}
+--- !u!114 &7594072802048000984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3177008635836805778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc8b5f48400a4904a9bc8b7a31373bed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collider: {fileID: 4442452589314604650}
 --- !u!114 &4490720435597107075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,8 +296,8 @@ MonoBehaviour:
   _rightHandItemSlot: {fileID: 2035902268462236571}
   rightHandItemData:
     SpritePath: Sprites/Sword
-    Description: ooo shiny
-    StrikeType: Slashing
+    Description: ooo?
+    StrikeType: Stabbing
     ColliderSize: {x: 0.5, y: 1}
     ColliderOffset: 0.5
     AttackCooldownDuration: 0.2
@@ -309,6 +311,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 429ec539634fb3f46afa0623f27d966b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6661446160781109839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3177008635836805778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 158ffd0c8d3a77645a82f5eae4d3dfd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHostileSearchDistance: 20
+--- !u!114 &8008858518621882282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3177008635836805778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1568b0a1c3cf8847bd4bb2d719a3055, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &904945300653727842
@@ -349,18 +376,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &8008858518621882282
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3177008635836805778}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1568b0a1c3cf8847bd4bb2d719a3055, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7334761012151370915
 MonoBehaviour:
   m_ObjectHideFlags: 0

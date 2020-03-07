@@ -8,6 +8,7 @@ namespace Sleepy.Characters
     [RequireComponent(typeof(CharacterInventory))]
     [RequireComponent(typeof(CharacterController))]
     [RequireComponent(typeof(CharacterCombat))]
+    [RequireComponent(typeof(CharacterSensors))]
     public class Character : MonoBehaviour
     {
         [SerializeField]
@@ -22,6 +23,9 @@ namespace Sleepy.Characters
         [SerializeField]
         private CharacterCombat _combat;
         public CharacterCombat Combat { get { return _combat; }}
+        [SerializeField]
+        private CharacterSensors _sensors;
+        public CharacterSensors Sensors { get { return _sensors; }}
 
         public Vector2 Position { get { return Body.Position; }}
         public Transform Transform { get { return Body.Transform; }}
@@ -39,6 +43,7 @@ namespace Sleepy.Characters
             Inventory.AssignCharacter(this);
             Inventory.RightHandItemSlot.AssignCharacter(this);
             Combat.AssignCharacter(this);
+            Sensors.AssignCharacter(this);
         }
 
         public void TakeControl()
