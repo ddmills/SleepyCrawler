@@ -3,7 +3,7 @@ namespace Sleepy.Characters
     using Bolt;
     using UnityEngine;
 
-    public class PlayerCharacterController : CharacterController
+    public class PlayerCharacterBehavior : CharacterBehavior
     {
         public override void SimulateOwner()
         {

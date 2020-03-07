@@ -3,26 +3,18 @@ namespace Sleepy.Characters
     using Loot;
     using UnityEngine;
 
-    public class CharacterInventory : MonoBehaviour
+    public class CharacterInventory : CharacterComponent
     {
-        private Character _character;
-        public Character Character { get { return _character; }}
-
         [SerializeField]
-        private HandItemSlot rightHandItemSlot;
+        private HandItemSlot _rightHandItemSlot;
+        public HandItemSlot RightHandItemSlot { get { return _rightHandItemSlot; }}
         [SerializeField]
         private ItemData rightHandItemData;
         public ItemData Weapon { get { return rightHandItemData; }}
 
         public void Awake()
         {
-            rightHandItemSlot.SetItemData(rightHandItemData);
-        }
-
-        public void AssignCharacter(Character character)
-        {
-            _character = character;
-            rightHandItemSlot.AssignCharacter(character);
+            RightHandItemSlot.SetItemData(rightHandItemData);
         }
     }
 }

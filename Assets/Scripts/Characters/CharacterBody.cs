@@ -5,7 +5,7 @@ namespace Sleepy.Characters
     using UnityEngine;
 
     [Serializable]
-    public class CharacterBody : MonoBehaviour
+    public class CharacterBody : CharacterComponent
     {
         [SerializeField]
         private BoxCollider2D _collider;
@@ -13,9 +13,6 @@ namespace Sleepy.Characters
 
         private float _speedControlThreshold = 3;
         private float _velocityLerpFactor = 5;
-
-        private Character _character;
-        public Character Character { get { return _character; }}
 
         private Vector2 _velocity;
         public Vector2 Velocity { get { return _velocity; }}
@@ -28,13 +25,9 @@ namespace Sleepy.Characters
 
         public Vector2 MovementDirection { get { return Speed > 0 ? Velocity.normalized : Direction; }}
         public float Angle { get { return (Mathf.Atan2(Direction.y, Direction.x) * Mathf.Rad2Deg) + 90; }}
-        public Vector2 Position { get { return transform.position; }}
+        public Transform Transform { get { return transform; }}
+        public Vector2 Position { get { return Transform.position; }}
         public float Speed { get { return Velocity.magnitude; }}
-
-        public void AssignCharacter(Character character)
-        {
-            _character = character;
-        }
 
         public void SetVelocity(Vector2 velocity)
         {

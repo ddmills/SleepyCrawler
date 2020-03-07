@@ -3,16 +3,9 @@ namespace Sleepy.Characters
     using Combat;
     using UnityEngine;
 
-    public class CharacterCombat : MonoBehaviour
+    public class CharacterCombat : CharacterComponent
     {
-        private Character _character;
-        public Character Character { get { return _character; }}
         private float _startAttackTime = 0;
-
-        public void AssignCharacter(Character character)
-        {
-            _character = character;
-        }
 
         public bool BasicAttack()
         {

@@ -4,6 +4,10 @@ namespace Sleepy.Characters
     using UnityEngine;
 
     [Serializable]
+    [RequireComponent(typeof(CharacterBody))]
+    [RequireComponent(typeof(CharacterInventory))]
+    [RequireComponent(typeof(CharacterController))]
+    [RequireComponent(typeof(CharacterCombat))]
     public class Character : MonoBehaviour
     {
         [SerializeField]
@@ -13,8 +17,14 @@ namespace Sleepy.Characters
         private CharacterInventory _inventory;
         public CharacterInventory Inventory { get { return _inventory; }}
         [SerializeField]
+        private CharacterController _controller;
+        public CharacterController Controller { get { return _controller; }}
+        [SerializeField]
         private CharacterCombat _combat;
         public CharacterCombat Combat { get { return _combat; }}
+
+        public Vector2 Position { get { return Body.Position; }}
+        public Transform Transform { get { return Body.Transform; }}
 
         private bool _isController = false;
         public bool IsController { get { return _isController; }}
@@ -25,7 +35,9 @@ namespace Sleepy.Characters
         void Awake()
         {
             Body.AssignCharacter(this);
+            Controller.AssignCharacter(this);
             Inventory.AssignCharacter(this);
+            Inventory.RightHandItemSlot.AssignCharacter(this);
             Combat.AssignCharacter(this);
         }
 

@@ -3,20 +3,13 @@ namespace Sleepy.Loot
     using Characters;
     using UnityEngine;
 
-    public class HandItemSlot : MonoBehaviour
+    public class HandItemSlot : CharacterComponent
     {
-        private Character _character;
-        public Character Character { get { return _character; }}
         [SerializeField]
         private SpriteRenderer spriteRenderer;
         [SerializeField]
         private ItemData _itemData;
         public ItemData ItemData { get { return _itemData; }}
-
-        public void AssignCharacter(Character character)
-        {
-            _character = character;
-        }
 
         public void SetItemData(ItemData data)
         {

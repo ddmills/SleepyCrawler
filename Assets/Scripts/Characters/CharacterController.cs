@@ -1,48 +1,110 @@
 namespace Sleepy.Characters
 {
-    using Bolt;
     using UnityEngine;
 
-    public class CharacterController : EntityEventListener<ICharacterState>
+    public class CharacterController : CharacterComponent
     {
-        [SerializeField]
-        private Character _character;
-        public Character Character { get { return _character; }}
+        public enum MoveMode {
+            NONE,
+            GO_TO,
+            FOLLOW,
+            FLEE
+        };
 
-        public override void Attached()
+        private MoveMode _mode = MoveMode.NONE;
+        public MoveMode Mode { get { return _mode; }}
+        private Vector2 _targetPosition;
+        public Vector2 TargetPosition { get { return _targetPosition; }}
+        private Transform _targetTransform;
+        public Transform TargetTransform { get { return _targetTransform; }}
+
+        private float _walkSpeed = .5f;
+        private float _runSpeed = 2;
+
+        public void MoveTo(Vector3 position)
         {
-            state.SetTransforms(state.Transform, transform);
-            Character.SetEntity(entity);
+            _mode = MoveMode.GO_TO;
+            _targetPosition = position;
+        }
 
-            if (entity.IsOwner)
+        public void Follow(Transform transform)
+        {
+            _mode = MoveMode.FOLLOW;
+            _targetTransform = transform;
+        }
+
+        public void Follow(Character other)
+        {
+            Follow(other.Transform);
+        }
+
+        public void Stop()
+        {
+            _mode = MoveMode.NONE;
+        }
+
+        public void Flee(Transform transform)
+        {
+            _mode = MoveMode.FLEE;
+            _targetTransform = transform;
+        }
+
+        public void Flee(Character other)
+        {
+            Flee(other.Transform);
+        }
+
+        public void FixedUpdate()
+        {
+            if (Character.IsController)
             {
-                Character.TakeControl();
+                switch (Mode)
+                {
+                    case MoveMode.GO_TO:
+                        ModeGoTo();
+                        break;
+                    case MoveMode.FOLLOW:
+                        ModeFollow();
+                        break;
+                    case MoveMode.FLEE:
+                        ModeFlee();
+                        break;
+                    default:
+                    case MoveMode.NONE:
+                        ModeNone();
+                        break;
+                }
             }
-
-            state.AddCallback("Direction", OnDirectionChange);
-            state.AddCallback("Velocity", OnVelocityChange);
         }
 
-        public override void SimulateOwner()
+        private void ModeNone()
         {
-            state.Direction = Character.Body.Direction;
-            state.Velocity = Character.Body.Velocity;
         }
 
-        public void OnDirectionChange()
+        private void ModeGoTo()
         {
-            Character.Body.SetDirection(state.Direction);
+            Character.Body.SetDesiredVelocity(
+                GetNormalizedDirectionTo(TargetPosition) * -_walkSpeed
+            );
         }
 
-        public void OnVelocityChange()
+        private void ModeFlee()
         {
-            Character.Body.SetVelocity(state.Velocity);
+            Character.Body.SetDesiredVelocity(
+                GetNormalizedDirectionTo(TargetTransform.position) * -_runSpeed
+            );
         }
 
-        public override void OnEvent(StrikeEvent evnt)
+        private void ModeFollow()
         {
-            BoltConsole.Write("Character received strike " + evnt.Amount + " of " + evnt.Type + " by " + evnt.Source.name);
-            Character.Body.Knockback(evnt.Source.transform.position, 5);
+            Character.Body.SetDesiredVelocity(
+                GetNormalizedDirectionTo(TargetTransform.position) * -_walkSpeed
+            );
+        }
+
+        private Vector2 GetNormalizedDirectionTo(Vector2 position)
+        {
+            return (position - Character.Position).normalized;
         }
     }
 }
