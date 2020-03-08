@@ -6,12 +6,18 @@ namespace Sleepy.Characters
     public class CharacterCombat : CharacterComponent
     {
         private float _startAttackTime = 0;
+        public bool IsBasicAttackReady { get { return _startAttackTime + Character.Inventory.Weapon.AttackCooldownDuration <= Time.time; }}
+        public float BasicAttackRange { get { return Character.Inventory.Weapon.ColliderSize.y + Character.Inventory.Weapon.ColliderOffset; }}
+
+        public bool IsWithinBasicAttackRange(Vector2 position)
+        {
+            return BasicAttackRange >= Character.Body.GetDistanceTo(position);
+        }
 
         public bool BasicAttack()
         {
-            if (_startAttackTime + Character.Inventory.Weapon.AttackCooldownDuration > Time.time)
+            if (!IsBasicAttackReady)
             {
-                Debug.Log("Cooling down");
                 return false;
             }
 

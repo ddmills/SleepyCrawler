@@ -30,7 +30,7 @@ namespace Sleepy.Loot
                 spriteRenderer.sortingLayerName = "front";
             }
 
-            transform.localEulerAngles = new Vector3(0, 0, Character.Body.Angle);
+            transform.localEulerAngles = new Vector3(0, 0, Character.Body.Angle - 135);
         }
     }
 }

@@ -15,6 +15,7 @@ namespace Sleepy.Characters
         public MoveMode Mode { get { return _mode; }}
         private Vector2 _targetPosition;
         public Vector2 TargetPosition { get { return _targetPosition; }}
+        private float _targetDistance;
         private Transform _targetTransform;
         public Transform TargetTransform { get { return _targetTransform; }}
 
@@ -27,19 +28,21 @@ namespace Sleepy.Characters
             _targetPosition = position;
         }
 
-        public void Follow(Transform transform)
+        public void Follow(Transform transform, float distance)
         {
             _mode = MoveMode.FOLLOW;
             _targetTransform = transform;
+            _targetDistance = distance;
         }
 
-        public void Follow(Character other)
+        public void Follow(Character other, float distance)
         {
-            Follow(other.Transform);
+            Follow(other.Transform, distance);
         }
 
         public void Stop()
         {
+            Character.Body.SetDesiredVelocity(Vector2.zero);
             _mode = MoveMode.NONE;
         }
 
@@ -83,28 +86,22 @@ namespace Sleepy.Characters
 
         private void ModeGoTo()
         {
-            Character.Body.SetDesiredVelocity(
-                GetNormalizedDirectionTo(TargetPosition) * -_walkSpeed
-            );
+            Character.Body.MoveToward(TargetTransform.position, _runSpeed);
         }
 
         private void ModeFlee()
         {
-            Character.Body.SetDesiredVelocity(
-                GetNormalizedDirectionTo(TargetTransform.position) * -_runSpeed
-            );
+            Character.Body.MoveAway(TargetTransform.position, _runSpeed);
         }
 
         private void ModeFollow()
         {
-            Character.Body.SetDesiredVelocity(
-                GetNormalizedDirectionTo(TargetTransform.position) * _walkSpeed
-            );
-        }
+            float distance = Vector2.Distance(Character.Position, TargetTransform.position);
 
-        private Vector2 GetNormalizedDirectionTo(Vector2 position)
-        {
-            return (position - Character.Position).normalized;
+            if (distance > _targetDistance)
+            {
+                Character.Body.MoveToward(TargetTransform.position, _runSpeed);
+            }
         }
     }
 }

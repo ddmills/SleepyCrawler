@@ -10,7 +10,7 @@ namespace Sleepy.Characters.AI
         }
 
         public void Behave(Character character) {
-            character.Controller.Follow(target);
+            character.Controller.Follow(target, 2f);
         }
     }
 }

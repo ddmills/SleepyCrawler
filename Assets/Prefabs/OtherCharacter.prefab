@@ -249,7 +249,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &79270681313701691
 MonoBehaviour:
@@ -298,9 +298,9 @@ MonoBehaviour:
     SpritePath: Sprites/Sword
     Description: ooo?
     StrikeType: Stabbing
-    ColliderSize: {x: 0.5, y: 1}
-    ColliderOffset: 0.5
-    AttackCooldownDuration: 0.2
+    ColliderSize: {x: 1, y: 1}
+    ColliderOffset: 0.1
+    AttackCooldownDuration: 1
 --- !u!114 &300051935472318049
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -15,6 +15,7 @@ namespace Sleepy.Characters.AI
         [Tooltip("How often the brain should reevaluate behavior")]
         private float thinkDelaySeconds = .5f;
         private float lastThought;
+        private IBehavior behavior;
 
         public override void Attached()
         {
@@ -34,6 +35,7 @@ namespace Sleepy.Characters.AI
         public override void SimulateOwner()
         {
             Think();
+            behavior.Behave(Character);
             state.Direction = Character.Body.Direction;
             state.Velocity = Character.Body.Velocity;
         }
@@ -42,8 +44,7 @@ namespace Sleepy.Characters.AI
         {
             if (lastThought + thinkDelaySeconds < BoltNetwork.Time)
             {
-                IBehavior behavior = Brain.Think(Character);
-                behavior.Behave(Character);
+                behavior = Brain.Think(Character);
                 lastThought = BoltNetwork.Time;
             }
         }

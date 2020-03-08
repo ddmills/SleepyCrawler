@@ -8,26 +8,27 @@ namespace Sleepy.Characters.AI
     [Serializable]
     public class Brain : MonoBehaviour
     {
-        private IBehavior currentBehavior;
+        private IBehavior _behaviour;
+        public IBehavior Behaviour { get { return _behaviour; }}
 
         public virtual IBehavior Think(Character character)
         {
-            currentBehavior = new IdleBehavior();
+            _behaviour = new IdleBehavior();
 
             List<Character> hostiles = character.Sensors.GetDetectedHostiles();
 
             if (hostiles.Count > 1)
             {
-                currentBehavior = new FleeBehavior(hostiles[0]);
-                return currentBehavior;
+                _behaviour = new FleeBehavior(hostiles[0]);
+                return _behaviour;
             }
             else if (hostiles.Count == 1)
             {
-                currentBehavior = new FollowBehavior(hostiles[0]);
-                return currentBehavior;
+                _behaviour = new MeleeAttackBehavior(hostiles[0]);
+                return _behaviour;
             }
 
-            return currentBehavior;
+            return _behaviour;
         }
     }
 }

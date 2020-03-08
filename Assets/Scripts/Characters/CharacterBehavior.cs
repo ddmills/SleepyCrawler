@@ -42,7 +42,7 @@ namespace Sleepy.Characters
         public override void OnEvent(StrikeEvent evnt)
         {
             BoltConsole.Write("Character received strike " + evnt.Amount + " of " + evnt.Type + " by " + evnt.Source.name);
-            Character.Body.Knockback(evnt.Source.transform.position, 5);
+            Character.Body.Knockback(evnt.Source.transform.position, 10);
         }
     }
 }

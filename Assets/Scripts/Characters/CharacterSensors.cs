@@ -14,9 +14,9 @@ namespace Sleepy.Characters
 
         public bool CanSee(Vector2 position)
         {
-            float distance = Vector2.Distance(Character.Position, position);
+            float distance = Character.Body.GetDistanceTo(position);
 
-            return distance <= 5;
+            return distance <= 10;
         }
 
         public bool CanSee(GameObject other)

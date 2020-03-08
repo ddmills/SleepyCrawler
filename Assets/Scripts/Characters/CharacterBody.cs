@@ -44,9 +44,19 @@ namespace Sleepy.Characters
             _direction = direction;
         }
 
-        public void LookAt(Vector2 point)
+        public void MoveToward(Vector2 position, float speed)
         {
-            SetDirection((point - Position).normalized);
+            SetDesiredVelocity(GetNormalizedDirectionTo(position) * speed);
+        }
+
+        public void MoveAway(Vector2 position, float speed)
+        {
+            SetDesiredVelocity(GetNormalizedDirectionTo(position) * -speed);
+        }
+
+        public void LookAt(Vector2 position)
+        {
+            SetDirection(GetNormalizedDirectionTo(position));
         }
 
         public void AddImpulse(Vector2 impulse)
@@ -61,7 +71,7 @@ namespace Sleepy.Characters
 
         public void Knockback(Vector2 source, float amount)
         {
-            AddImpulse((Position - source) * amount);
+            AddImpulse(GetNormalizedDirectionTo(source) * -amount);
         }
 
         public void FixedUpdate()
@@ -135,6 +145,16 @@ namespace Sleepy.Characters
                 size,
                 Angle
             );
+        }
+
+        public Vector2 GetNormalizedDirectionTo(Vector2 position)
+        {
+            return (position - Position).normalized;
+        }
+
+        public float GetDistanceTo(Vector2 position)
+        {
+            return Vector2.Distance(Position, position);
         }
     }
 }
