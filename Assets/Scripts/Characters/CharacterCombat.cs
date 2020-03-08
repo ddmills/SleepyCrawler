@@ -50,6 +50,8 @@ namespace Sleepy.Characters
                 }
             }
 
+            Character.Animator.SetTrigger("SlashAttack");
+
             _startAttackTime = now;
 
             return true;

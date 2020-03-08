@@ -26,6 +26,9 @@ namespace Sleepy.Characters
         [SerializeField]
         private CharacterSensors _sensors;
         public CharacterSensors Sensors { get { return _sensors; }}
+        [SerializeField]
+        private Animator _animator;
+        public Animator Animator { get { return _animator; }}
 
         public Vector2 Position { get { return Body.Position; }}
         public Transform Transform { get { return Body.Transform; }}

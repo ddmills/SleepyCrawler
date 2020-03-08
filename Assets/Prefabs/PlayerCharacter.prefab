@@ -1,5 +1,57 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2905714045440018067
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2667308980219089850}
+  - component: {fileID: 319269465525415785}
+  m_Layer: 0
+  m_Name: RightHand
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2667308980219089850
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2905714045440018067}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 7000385703969458850}
+  m_Father: {fileID: 5937608682012630577}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &319269465525415785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2905714045440018067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2d2752a61c6b5d43922ffae4ac8834b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 8117174687164016912}
+  _itemData:
+    SpritePath: 
+    Description: 
+    StrikeType: 
+    ColliderSize: {x: 0, y: 0}
+    ColliderOffset: 0
+    AttackCooldownDuration: 0
 --- !u!1 &5937608682012630579
 GameObject:
   m_ObjectHideFlags: 0
@@ -21,6 +73,7 @@ GameObject:
   - component: {fileID: -889647560896374652}
   - component: {fileID: 1248817908530047755}
   - component: {fileID: 1621589741565586674}
+  - component: {fileID: 665673763}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Untagged
@@ -39,7 +92,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 7000385703969458850}
+  - {fileID: 2667308980219089850}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -165,6 +218,7 @@ MonoBehaviour:
   _controller: {fileID: 1248817908530047755}
   _combat: {fileID: 8815902390130252480}
   _sensors: {fileID: 5826062112529291381}
+  _animator: {fileID: 665673763}
 --- !u!114 &1662408653598306169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,10 +244,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6037eb04b2531cc4f830d5f2252665fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rightHandItemSlot: {fileID: 7075548043648397114}
+  _rightHandItemSlot: {fileID: 319269465525415785}
   rightHandItemData:
     SpritePath: Sprites/Sword
-    Description: ooo shiny
+    Description: A rusty shortsword
     StrikeType: Slashing
     ColliderSize: {x: 1, y: 1}
     ColliderOffset: 0.2
@@ -286,6 +340,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _character: {fileID: 9180657545047147418}
+--- !u!95 &665673763
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5937608682012630579}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 851e5e56f6652c845b1b0f2e1b31594e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8908984561584767842
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,9 +369,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7000385703969458850}
   - component: {fileID: 8117174687164016912}
-  - component: {fileID: 7075548043648397114}
+  - component: {fileID: 665673764}
   m_Layer: 0
-  m_Name: RightHand
+  m_Name: RightHandSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -311,11 +384,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8908984561584767842}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 5937608682012630577}
+  m_Father: {fileID: 2667308980219089850}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8117174687164016912
@@ -368,23 +441,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7075548043648397114
-MonoBehaviour:
+--- !u!95 &665673764
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8908984561584767842}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2d2752a61c6b5d43922ffae4ac8834b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 8117174687164016912}
-  _itemData:
-    SpritePath: 
-    Description: 
-    StrikeType: 
-    ColliderSize: {x: 0, y: 0}
-    ColliderOffset: 0
-    AttackCooldownDuration: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

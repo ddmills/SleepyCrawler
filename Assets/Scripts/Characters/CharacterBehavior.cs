@@ -12,6 +12,7 @@ namespace Sleepy.Characters
         public override void Attached()
         {
             state.SetTransforms(state.Transform, transform);
+            state.SetAnimator(Character.Animator);
             Character.SetEntity(entity);
 
             if (entity.IsOwner)

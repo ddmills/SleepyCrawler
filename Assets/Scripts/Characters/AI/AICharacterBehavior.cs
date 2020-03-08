@@ -21,6 +21,7 @@ namespace Sleepy.Characters.AI
         {
             lastThought = BoltNetwork.Time;
             state.SetTransforms(state.Transform, transform);
+            state.SetAnimator(Character.Animator);
             Character.SetEntity(entity);
 
             if (entity.IsOwner)
