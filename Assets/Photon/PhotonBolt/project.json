@@ -185,6 +185,7 @@
         {
           "Name": "SlashAttack",
           "Enabled": true,
+          "Expanded": true,
           "Priority": 1,
           "PropertyType": {
             "$type": "Bolt.Compiler.PropertyTypeTrigger, bolt.compiler"
