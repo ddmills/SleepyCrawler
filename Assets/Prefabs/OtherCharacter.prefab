@@ -300,7 +300,7 @@ MonoBehaviour:
     StrikeType: Stabbing
     ColliderSize: {x: 1, y: 1}
     ColliderOffset: 0.1
-    AttackCooldownDuration: 1
+    AttackCooldownDuration: 0.8
 --- !u!114 &300051935472318049
 MonoBehaviour:
   m_ObjectHideFlags: 0
