@@ -387,6 +387,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 3177008635836805779}
+  bloodEffectPrefab: {fileID: 6643851837355743987, guid: 643ad9e51fd643441aea0f6f109bf635,
+    type: 3}
 --- !u!114 &904945300653727842
 MonoBehaviour:
   m_ObjectHideFlags: 0

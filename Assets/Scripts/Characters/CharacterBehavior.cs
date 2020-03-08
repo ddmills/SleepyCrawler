@@ -44,6 +44,7 @@ namespace Sleepy.Characters
         {
             BoltConsole.Write("Character received strike " + evnt.Amount + " of " + evnt.Type + " by " + evnt.Source.name);
             Character.Body.Knockback(evnt.Source.transform.position, 10);
+            Character.Display.SpawnBlood();
         }
     }
 }
