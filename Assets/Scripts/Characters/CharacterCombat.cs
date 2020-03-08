@@ -56,32 +56,5 @@ namespace Sleepy.Characters
 
             return true;
         }
-
-        private bool started = false;
-
-        void Start()
-        {
-            started = true;
-        }
-
-        void OnDrawGizmos()
-        {
-            Gizmos.color = Color.red;
-            if (started)
-            {
-                Gizmos.DrawWireCube(Character.Body.Position, transform.localScale);
-                Matrix4x4 rot = Matrix4x4.TRS(
-                    Character.Body.Position,
-                    Quaternion.Euler(0, 0, Character.Body.Angle),
-                    Vector3.one
-                );
-
-                Gizmos.matrix = rot;
-                Gizmos.DrawWireCube(
-                    new Vector2(0, -Character.Inventory.Weapon.ColliderSize.y / 2) - (new Vector2(0, Character.Inventory.Weapon.ColliderOffset)),
-                    Character.Inventory.Weapon.ColliderSize
-                );
-            }
-        }
     }
 }

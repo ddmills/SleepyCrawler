@@ -24,6 +24,9 @@ namespace Sleepy.Characters
         private CharacterCombat _combat;
         public CharacterCombat Combat { get { return _combat; }}
         [SerializeField]
+        private CharacterDisplay _display;
+        public CharacterDisplay Display { get { return _display; }}
+        [SerializeField]
         private CharacterSensors _sensors;
         public CharacterSensors Sensors { get { return _sensors; }}
         [SerializeField]
@@ -44,9 +47,10 @@ namespace Sleepy.Characters
             Body.AssignCharacter(this);
             Controller.AssignCharacter(this);
             Inventory.AssignCharacter(this);
-            Inventory.RightHandItemSlot.AssignCharacter(this);
             Combat.AssignCharacter(this);
             Sensors.AssignCharacter(this);
+            Display.AssignCharacter(this);
+            Inventory.RightHandItemSlot.AssignCharacter(this);
         }
 
         public void TakeControl()

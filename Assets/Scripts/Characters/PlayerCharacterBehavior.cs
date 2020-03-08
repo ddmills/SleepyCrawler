@@ -23,7 +23,7 @@ namespace Sleepy.Characters
                 bool attacked = Character.Combat.BasicAttack();
             }
 
-            Character.Body.SetDesiredVelocity(inputAxis.normalized * 2);
+            Character.Body.SetDesiredVelocity(inputAxis.normalized * 4);
             Character.Body.LookAt(mousePosition);
 
             state.Direction = Character.Body.Direction;

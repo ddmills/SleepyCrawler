@@ -29,7 +29,7 @@ namespace Sleepy.Characters
             return CanSee(other.Body.Position);
         }
 
-        private bool IsHostileTowards(Character other)
+        public bool IsHostileTowards(Character other)
         {
             return other != Character;
         }
