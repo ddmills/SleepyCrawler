@@ -50,7 +50,7 @@ namespace Sleepy.Characters
             Combat.AssignCharacter(this);
             Sensors.AssignCharacter(this);
             Display.AssignCharacter(this);
-            Inventory.RightHandItemSlot.AssignCharacter(this);
+            Inventory.PrimarySlot.AssignCharacter(this);
         }
 
         public void TakeControl()

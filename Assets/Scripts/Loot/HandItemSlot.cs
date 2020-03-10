@@ -8,13 +8,21 @@ namespace Sleepy.Loot
         [SerializeField]
         private SpriteRenderer spriteRenderer;
         [SerializeField]
-        private ItemData _itemData;
-        public ItemData ItemData { get { return _itemData; }}
+        private EquipableItem _item;
+        public EquipableItem Item { get { return _item; }}
 
-        public void SetItemData(ItemData data)
+        public void Assign(EquipableItem item)
         {
-            _itemData = data;
-            spriteRenderer.sprite = data.LoadSprite();
+            _item = item;
+            spriteRenderer.sprite = item.Sprite;
+        }
+
+        public void Use()
+        {
+            if (Item != null)
+            {
+                Item.Use(Character);
+            }
         }
 
         public void Update()

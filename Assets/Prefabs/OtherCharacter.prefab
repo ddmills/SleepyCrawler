@@ -126,13 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 1068585087386371505}
-  _itemData:
-    SpritePath: 
-    Description: 
-    StrikeType: 
-    ColliderSize: {x: 0, y: 0}
-    ColliderOffset: 0
-    AttackCooldownDuration: 0
+  _item: {fileID: 0}
 --- !u!1 &3177008635836805778
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,7 +324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6037eb04b2531cc4f830d5f2252665fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rightHandItemSlot: {fileID: 8865320273666332278}
+  _primarySlot: {fileID: 8865320273666332278}
   rightHandItemData:
     SpritePath: Sprites/Sword
     Description: ooo?
@@ -338,6 +332,7 @@ MonoBehaviour:
     ColliderSize: {x: 1, y: 1}
     ColliderOffset: 0.1
     AttackCooldownDuration: 0.8
+  MeleeWeapon: {fileID: 11400000, guid: 7aa4d3a0b30616b4dad34a366adda344, type: 2}
 --- !u!114 &300051935472318049
 MonoBehaviour:
   m_ObjectHideFlags: 0

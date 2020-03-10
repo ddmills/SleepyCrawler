@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a89724b928bf0c7489c05b2c9b3031e2, type: 3}
+  m_Name: Broadsword
+  m_EditorClassIdentifier: 
+  Name: Broadsword
+  Description: 
+  Sprite: {fileID: 21300000, guid: 1cd168602ac896945aaf368c4e88db4b, type: 3}
+  AllowedSlots:
+  - {fileID: 11400000, guid: 177f84ec43419c240b85b79d5277f800, type: 2}
+  - {fileID: 11400000, guid: 859026b5833ecbe4e8f9fe85ffc647e8, type: 2}
+  Damage: 500
+  Classification: {fileID: 11400000, guid: ca4181ed9a508e945923c68cae9043ea, type: 2}
+  AttackType: {fileID: 11400000, guid: fc369482a457ec646a0bd8f7ec8be445, type: 2}
+  DamageType: {fileID: 11400000, guid: b3495c99fcc45d04a8b94475217209da, type: 2}
+  CooldownDuration: 400

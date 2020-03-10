@@ -76,13 +76,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 8117174687164016912}
-  _itemData:
-    SpritePath: 
-    Description: 
-    StrikeType: 
-    ColliderSize: {x: 0, y: 0}
-    ColliderOffset: 0
-    AttackCooldownDuration: 0
+  _item: {fileID: 0}
 --- !u!1 &2998338336905804515
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,7 +385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6037eb04b2531cc4f830d5f2252665fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rightHandItemSlot: {fileID: 319269465525415785}
+  _primarySlot: {fileID: 319269465525415785}
   rightHandItemData:
     SpritePath: Sprites/Sword
     Description: A rusty shortsword
@@ -399,6 +393,7 @@ MonoBehaviour:
     ColliderSize: {x: 1, y: 1.6}
     ColliderOffset: 0.2
     AttackCooldownDuration: 0.2
+  MeleeWeapon: {fileID: 11400000, guid: 13a726673115ff64691d34be07d74f29, type: 2}
 --- !u!114 &8815902390130252480
 MonoBehaviour:
   m_ObjectHideFlags: 0

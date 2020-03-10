@@ -21,38 +21,11 @@ namespace Sleepy.Characters
                 return false;
             }
 
-            float now = Time.time;
-
-            Collider2D[] collisions = Character.Body.CastBoxInFront(
-                Character.Inventory.Weapon.ColliderSize,
-                Character.Inventory.Weapon.ColliderOffset
-            );
-
-            foreach (Collider2D collision in collisions)
-            {
-                if (collision == Character.Body.Collider)
-                {
-                    continue;
-                }
-
-                Strikeable strikeable = collision.gameObject.GetComponent<Strikeable>();
-
-                if (strikeable)
-                {
-                    StrikeData strike = new StrikeData(
-                        Character.Inventory.Weapon.StrikeType,
-                        100,
-                        Character.Entity,
-                        now
-                    );
-
-                    strikeable.Strike(strike);
-                }
-            }
+            Character.Inventory.UsePrimary();
 
             Character.Animator.SetTrigger("SlashAttack");
 
-            _startAttackTime = now;
+            _startAttackTime = Time.time; // TODO move to individual item instance (?)
 
             return true;
         }
