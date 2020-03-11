@@ -17,12 +17,15 @@ namespace Sleepy.Loot
             spriteRenderer.sprite = item.Sprite;
         }
 
-        public void Use()
+        public bool Use()
         {
-            if (Item != null)
+            if (Item == null)
             {
-                Item.Use(Character);
+                return false;
             }
+
+            Item.Use(Character);
+            return true;
         }
 
         public void Update()

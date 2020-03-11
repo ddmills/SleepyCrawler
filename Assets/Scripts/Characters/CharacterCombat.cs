@@ -6,8 +6,8 @@ namespace Sleepy.Characters
     public class CharacterCombat : CharacterComponent
     {
         private float _startAttackTime = 0;
-        public bool IsBasicAttackReady { get { return _startAttackTime + Character.Inventory.Weapon.AttackCooldownDuration <= Time.time; }}
-        public float BasicAttackRange { get { return Character.Inventory.Weapon.ColliderSize.y + Character.Inventory.Weapon.ColliderOffset; }}
+        public bool IsBasicAttackReady { get { return _startAttackTime + Character.Inventory.Item.CooldownDuration <= Time.time; }}
+        public float BasicAttackRange { get { return Character.Inventory.Item.AttackType.Range(Character); }}
 
         public bool IsWithinBasicAttackRange(Vector2 position)
         {
@@ -16,14 +16,12 @@ namespace Sleepy.Characters
 
         public bool BasicAttack()
         {
-            if (!IsBasicAttackReady)
-            {
-                return false;
-            }
+            // if (!IsBasicAttackReady)
+            // {
+            //     return false;
+            // }
 
             Character.Inventory.UsePrimary();
-
-            Character.Animator.SetTrigger("SlashAttack");
 
             _startAttackTime = Time.time; // TODO move to individual item instance (?)
 

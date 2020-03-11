@@ -423,6 +423,29 @@
       "Name": "BlockState",
       "Guid": "ec1242e7-ec68-4315-9a93-612dd5929687",
       "Groups": []
+    },
+    {
+      "$type": "Bolt.Compiler.EventDefinition, bolt.compiler",
+      "Properties": [
+        {
+          "Name": "Slot",
+          "Enabled": true,
+          "Expanded": true,
+          "ReplicationMode": 1,
+          "Priority": 1,
+          "PropertyType": {
+            "$type": "Bolt.Compiler.PropertyTypeInteger, bolt.compiler",
+            "MaxValue": 16,
+            "CompressionEnabled": true
+          },
+          "AssetSettings": {
+            "$type": "Bolt.Compiler.PropertyEventSettings, bolt.compiler"
+          }
+        }
+      ],
+      "Name": "ItemUseEvent",
+      "Guid": "a698e9d7-cec8-43c8-b1db-b1803c5bb77d",
+      "Groups": []
     }
   ],
   "ActiveGroup": "Everything"

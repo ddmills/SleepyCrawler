@@ -328,7 +328,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.35}
+  m_Offset: {x: 0, y: -0.24}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -339,7 +339,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.8}
+  m_Size: {x: 0.5, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &9180657545047147418
 MonoBehaviour:
@@ -386,14 +386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _primarySlot: {fileID: 319269465525415785}
-  rightHandItemData:
-    SpritePath: Sprites/Sword
-    Description: A rusty shortsword
-    StrikeType: Slashing
-    ColliderSize: {x: 1, y: 1.6}
-    ColliderOffset: 0.2
-    AttackCooldownDuration: 0.2
-  MeleeWeapon: {fileID: 11400000, guid: 13a726673115ff64691d34be07d74f29, type: 2}
+  Item: {fileID: 11400000, guid: 13a726673115ff64691d34be07d74f29, type: 2}
 --- !u!114 &8815902390130252480
 MonoBehaviour:
   m_ObjectHideFlags: 0

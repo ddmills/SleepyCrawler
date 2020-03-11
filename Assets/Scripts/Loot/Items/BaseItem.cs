@@ -12,6 +12,7 @@ namespace Sleepy.Loot
         public string Name;
         public string Description;
         public Sprite Sprite;
+        public string Id;
 
         public virtual void Use(Character character)
         {

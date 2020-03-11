@@ -21,5 +21,10 @@ namespace Sleepy.Combat
         {
             return character.Body.CastBoxInFront(ColliderSize, ColliderOffset);
         }
+
+        public float Range(Character character)
+        {
+            return ColliderSize.y + ColliderOffset;
+        }
     }
 }

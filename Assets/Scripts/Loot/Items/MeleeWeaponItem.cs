@@ -44,9 +44,12 @@ namespace Sleepy.Loot
                     strikeable.Strike(strike);
                 }
             }
+        }
 
-            // character.Animator.SetTrigger("SlashAttack");
-            // spawn slash attack (?)
+        public void SpawnUseEffects(Character character)
+        {
+            GameObject effect = Instantiate(AttackType.EffectPrefab, character.Transform);
+            effect.transform.localEulerAngles = new Vector3(0, 0, character.Body.Angle - 90);
         }
     }
 }

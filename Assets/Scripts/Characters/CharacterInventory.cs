@@ -9,19 +9,30 @@ namespace Sleepy.Characters
         private HandItemSlot _primarySlot;
         public HandItemSlot PrimarySlot { get { return _primarySlot; }}
         [SerializeField]
-        private ItemData rightHandItemData;
-        public ItemData Weapon { get { return rightHandItemData; }}
-        public MeleeWeaponItem MeleeWeapon;
+        public MeleeWeaponItem Item;
 
         public void Awake()
         {
-            // RightHandItemSlot.SetItemData(rightHandItemData);
-            PrimarySlot.Assign(MeleeWeapon);
+            PrimarySlot.Assign(Item);
         }
 
         public void UsePrimary()
         {
-            PrimarySlot.Use();
+            if (PrimarySlot.Use())
+            {
+                ItemUseData data = new ItemUseData(0);
+                data.ToBoltItemUseEventEvent(Character.Entity).Send();
+            }
+        }
+
+        public bool CanUsePrimary()
+        {
+            return true;
+        }
+
+        public void SpawnPrimaryEffects(ItemUseData data)
+        {
+            Item.SpawnUseEffects(Character);
         }
     }
 }

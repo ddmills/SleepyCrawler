@@ -1,5 +1,6 @@
 namespace Sleepy.Characters
 {
+    using Loot;
     using Bolt;
     using UnityEngine;
 
@@ -45,6 +46,13 @@ namespace Sleepy.Characters
             BoltConsole.Write("Character received strike " + evnt.Amount + " of " + evnt.Type + " by " + evnt.Source.name);
             Character.Body.Knockback(evnt.Source.transform.position, 10);
             Character.Display.SpawnBlood();
+        }
+
+        public override void OnEvent(ItemUseEvent evnt)
+        {
+            ItemUseData data = ItemUseData.FromBoltEvent(evnt);
+
+            Character.Inventory.SpawnPrimaryEffects(data);
         }
     }
 }
